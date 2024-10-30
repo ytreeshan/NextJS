@@ -9,6 +9,7 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
+
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
@@ -18,7 +19,8 @@ export async function fetchRevenue() {
     // await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue>`SELECT * FROM revenue`;
-
+    const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
+const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
     // console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
